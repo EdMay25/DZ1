@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Оздоровительный массаж | IF</title>
+  <meta name="description" content="Профессиональный оздоровительный массаж с холистическим подходом. RU/EN." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2Pkf/Ql6VSI8QxjeaUp43EIBosHuLlHotE5T7V6u0Y5qYvYj2YSeP3r5Yg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* ---------- ГЛУБОКАЯ ТЕМНАЯ ПАЛИТРА ---------- */
+    :root {
+      --primary: #0f2f24;
+      --primary-2: #1b4b3b;
+      --accent:  #6ec1a7;
+      --accent-2:#97d2c2;
+      --ink:    #e9f6f0;
+      --paper:  #0a221b;
+      --card:   #112e26;
+      --muted:  #cfdad6;
+      --white:  #ffffff;
+      --radius: 16px;
+      --shadow-1: 0 10px 30px rgba(0,0,0,.25);
+      --shadow-2: 0 6px 18px rgba(0,0,0,.18);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      color: var(--ink);
+      background: var(--paper) fixed no-repeat;
+      background-image:
+        radial-gradient(1000px 600px at 10% -10%, rgba(110,193,167,.12), transparent 60%),
+        radial-gradient(900px 500px at 90% 110%, rgba(110,193,167,.12), transparent 60%),
+        linear-gradient(rgba(10,34,27,.78), rgba(10,34,27,.78)),
+        url('https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=2064&auto=format&fit=crop');
+      background-size: cover,cover,100% 100%,cover;
+      line-height:1.7
+    }
+    img{max-width:100%;display:block}
+    .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    h1,h2,h3{font-family: Georgia, "Times New Roman", serif;font-weight:500;letter-spacing:.2px}
+    h1{font-size:3rem;line-height:1.2}
+    h2{font-size:2.4rem;margin-bottom:36px;color:var(--accent-2);text-align:center}
+    h3{font-size:1.4rem;color:var(--accent-2)}
+    p{color:var(--muted)}
+    section{padding:96px 0;position:relative}
+
+    /* ---------- ГРАФИЧЕСКИЕ ЭЛЕМЕНТЫ ---------- */
+    .leaf::before,.leaf::after{content:'';position:absolute;inset:-20px auto auto -20px;width:120px;height:120px;opacity:.08;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path fill="%236ec1a7" d="M54 10C41 8 22 14 12 26S2 50 6 58c8 4 22-2 32-12S56 20 54 10z"/></svg>') no-repeat center/contain;filter:blur(.3px)}
+    .leaf::after{inset:auto -20px -20px auto;transform:rotate(180deg)}
+    /* деликатные разделители-волнушки */
+    .wave{position:relative}
+    .wave:after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:70px;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22,103.59,29,158,17C274.31,37.65,327,0,480,0s205.69,37.65,322,63.29c54.41,12,110.21,5,158-17V0Z" opacity=".25" fill="%2397d2c2"/><path d="M0,0V15.81C47.79,37.86,103.59,45,158,33,274.31,7.65,327,0,480,0s205.69,7.65,322,33c54.41,12,110.21,5,158-17V0Z" opacity=".35" fill="%236ec1a7"/></svg>') center/cover no-repeat}
+
+    /* ---------- ШАПКА ---------- */
+    .header{position:sticky;top:0;z-index:1000;backdrop-filter:blur(6px)}
+    .header-inner{background:rgba(15,47,36,.72);box-shadow:var(--shadow-2);border-bottom:1px solid rgba(151,210,194,.15)}
+    .header .container{display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+    .nav{display:flex;gap:28px}
+    .nav a{color:var(--ink);text-decoration:none;opacity:.9;transition:.2s ease}
+    .nav a:hover{color:var(--accent)}
+
+    /* ЛОГОТИП ИЗ ИНИЦИАЛОВ (пример: IF) */
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand-mark{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%, var(--accent-2), var(--accent));color:#083126;font-weight:900;box-shadow:var(--shadow-2);border:1px solid rgba(151,210,194,.35)}
+    .brand-name{color:var(--accent-2);font-weight:700}
+
+    /* ЯЗЫКОВОЙ ПЕРЕКЛЮЧАТЕЛЬ */
+    .lang{display:flex;gap:8px;align-items:center}
+    .lang button{padding:6px 10px;border-radius:999px;border:1px solid rgba(151,210,194,.3);background:rgba(255,255,255,.06);color:var(--ink);cursor:pointer}
+    .lang button.active{background:var(--accent);color:#083126}
+
+    /* HERO */
+    .hero{min-height:82vh;display:grid;place-items:center;text-align:center;padding:48px 24px;background:linear-gradient(180deg, rgba(17,46,38,.35), rgba(17,46,38,0) 60%), url('https://images.unsplash.com/photo-1602881917445-42c9a2c9c6c5?q=80&w=2100&auto=format&fit=crop') center/cover no-repeat;border-bottom:1px solid rgba(151,210,194,.15)}
+    .hero h1{color:var(--white);text-shadow:0 3px 10px rgba(0,0,0,.45)}
+    .hero p{max-width:760px;margin:18px auto 30px;font-size:1.15rem}
+    .btn{display:inline-flex;gap:10px;align-items:center;padding:14px 28px;border-radius:999px;border:1px solid rgba(151,210,194,.25);text-decoration:none;font-weight:600}
+    .btn-primary{background:var(--accent);color:#083126;box-shadow:var(--shadow-2)}
+    .btn-primary:hover{background:var(--accent-2);transform:translateY(-2px)}
+
+    /* Блоки */
+    #about .wrap{display:grid;grid-template-columns:320px 1fr;gap:48px;align-items:center}
+    .avatar{width:320px;height:320px;border-radius:50%;overflow:hidden;border:6px solid rgba(151,210,194,.2);box-shadow:var(--shadow-1)}
+    .card{background:var(--card);border:1px solid rgba(151,210,194,.15);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-2)}
+
+    .grid{display:grid;gap:24px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .service{text-align:center;padding:30px;border-radius:var(--radius);background:linear-gradient(180deg, rgba(151,210,194,.08), rgba(151,210,194,.02));border:1px solid rgba(151,210,194,.15);box-shadow:var(--shadow-2);position:relative;overflow:hidden}
+    .service i{font-size:32px;margin-bottom:12px;color:var(--accent-2)}
+    .service:after{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;border:2px dashed rgba(151,210,194,.25);opacity:.25}
+    .price{margin-top:12px;font-weight:700;color:var(--accent-2)}
+
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .gallery img{border-radius:14px;aspect-ratio:4/3;object-fit:cover;border:1px solid rgba(151,210,194,.15);box-shadow:var(--shadow-2)}
+
+    details.faq{background:var(--card);border:1px solid rgba(151,210,194,.15);border-radius:12px;margin-bottom:10px;overflow:hidden}
+    details.faq>summary{list-style:none;cursor:pointer;padding:18px 22px;font-weight:700;color:var(--accent-2);position:relative}
+    details.faq>summary::-webkit-details-marker{display:none}
+    details.faq>summary:after{content:'\002B';position:absolute;right:22px;top:50%;transform:translateY(-50%);opacity:.7}
+    details[open].faq>summary:after{content:'\2212'}
+    details.faq>div{padding:0 22px 20px;color:var(--muted)}
+
+    #contact{background:linear-gradient(180deg, rgba(151,210,194,.12), rgba(151,210,194,0))}
+    #contact h2{color:var(--white)}
+    .form{max-width:720px;margin:0 auto}
+    .field{margin-bottom:16px}
+    .field label{display:block;margin-bottom:8px;color:var(--accent-2);font-weight:600}
+    .input,.select,.textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(151,210,194,.25);background:rgba(255,255,255,.04);color:var(--ink);outline:none;transition:.2s ease;font-size:1rem}
+    .input:focus,.select:focus,.textarea:focus{box-shadow:0 0 0 4px rgba(110,193,167,.18);border-color:var(--accent-2)}
+    .textarea{min-height:120px;resize:vertical}
+    .submit{width:100%;padding:15px 26px;border-radius:999px;border:none;font-weight:700;cursor:pointer;background:var(--accent);color:#083126;box-shadow:var(--shadow-2)}
+    .submit:hover{background:var(--accent-2)}
+
+    footer{background:#0a1a16;border-top:1px solid rgba(151,210,194,.12);padding:56px 0;text-align:center;color:var(--muted)}
+    .social a{color:var(--muted);font-size:1.4rem;margin:0 10px}
+    .social a:hover{color:var(--accent-2)}
+
+    @media (max-width: 960px){
+      #about .wrap{grid-template-columns:1fr;text-align:center}
+      .avatar{margin:0 auto}
+      .grid-3{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- ШАПКА -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="container">
+        <a class="brand" href="#">
+          <span class="brand-mark" aria-label="Логотип">IF</span>
+          <span class="brand-name" data-i18n="brand">Имя Фамилия</span>
+        </a>
+        <nav class="nav" aria-label="Основное меню">
+          <a href="#about" data-i18n="menu.about">Обо мне</a>
+          <a href="#services" data-i18n="menu.services">Услуги</a>
+          <a href="#gallery" data-i18n="menu.gallery">Атмосфера</a>
+          <a href="#faq" data-i18n="menu.faq">Вопросы</a>
+          <a href="#contact" data-i18n="menu.contact">Запись</a>
+        </nav>
+        <div class="lang" aria-label="Выбор языка">
+          <button id="ruBtn" class="active" data-lang="ru">RU</button>
+          <button id="enBtn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero leaf wave" id="home">
+      <div class="container" style="max-width:900px;">
+        <h1 data-i18n="hero.title">Гармония тела и души через прикосновение</h1>
+        <p data-i18n="hero.subtitle">Холистический подход к вашему самочувствию: снимаем напряжение, улучшаем сон и возвращаем лёгкость в теле. Тёплое пространство, натуральные масла и бережные техники.</p>
+        <a class="btn btn-primary" href="#contact"><i class="fa-solid fa-calendar-check"></i> <span data-i18n="hero.cta">Записаться</span></a>
+      </div>
+    </section>
+
+    <!-- О СПЕЦИАЛИСТЕ -->
+    <section id="about" class="leaf wave">
+      <div class="container wrap">
+        <div class="avatar">
+          <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1200&auto=format&fit=crop" alt="Фото специалиста" />
+        </div>
+        <article class="card">
+          <h2 style="text-align:left;" data-i18n="about.title">Философия заботы о вас</h2>
+          <p data-i18n="about.p1">Наше тело — единая система, где физическое и эмоциональное неразделимы. Я соединяю классические и мягкие релиз‑техники, чтобы помочь вам восстановиться и почувствовать себя лучше уже после первой встречи.</p>
+          <p style="margin-top:10px;" data-i18n="about.p2">Безопасное пространство, конфиденциальность и внимательное отношение — основы моей практики.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- УСЛУГИ -->
+    <section id="services" class="leaf wave">
+      <div class="container">
+        <h2 data-i18n="services.title">Услуги и техники</h2>
+        <div class="grid grid-3">
+          <div class="service">
+            <i class="fa-solid fa-spa" aria-hidden="true"></i>
+            <h3 data-i18n="services.s1.title">Классический массаж</h3>
+            <p data-i18n="services.s1.desc">Снятие мышечного напряжения, улучшение кровообращения и общее восстановление.</p>
+            <div class="price" data-i18n="services.s1.price">60 мин · 3000 ₽</div>
+          </div>
+          <div class="service">
+            <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+            <h3 data-i18n="services.s2.title">Аромарелакс</h3>
+            <p data-i18n="services.s2.desc">Глубокое расслабление с натуральными эфирными маслами для снижения стресса.</p>
+            <div class="price" data-i18n="services.s2.price">75 мин · 4000 ₽</div>
+          </div>
+          <div class="service">
+            <i class="fa-solid fa-dumbbell" aria-hidden="true"></i>
+            <h3 data-i18n="services.s3.title">Спортивный массаж</h3>
+            <p data-i18n="services.s3.desc">Восстановление после нагрузок, профилактика травм и повышение эластичности.</p>
+            <div class="price" data-i18n="services.s3.price">60 мин · 3500 ₽</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ГАЛЕРЕЯ -->
+    <section id="gallery" class="leaf wave">
+      <div class="container">
+        <h2 data-i18n="gallery.title">Атмосфера и пространство</h2>
+        <div class="gallery" aria-label="Галерея интерьера и настроения">
+          <img src="https://images.unsplash.com/photo-1617184073954-3a2e0d16d2b7?q=80&w=1500&auto=format&fit=crop" alt="Свечи и камни для массажа" />
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1500&auto=format&fit=crop" alt="Спа‑интерьер с зеленью" />
+          <img src="https://images.unsplash.com/photo-1604335398428-7df9b50d5a5b?q=80&w=1500&auto=format&fit=crop" alt="Расслабляющая атмосфера кабинета" />
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="leaf wave">
+      <div class="container" style="max-width:860px;">
+        <h2 data-i18n="faq.title">Часто задаваемые вопросы</h2>
+        <details class="faq"><summary data-i18n="faq.q1">Как подготовиться к первому сеансу?</summary><div data-i18n="faq.a1">Рекомендуется принять душ и не есть за 1–1.5 часа до процедуры. Главное — прийти с настроем на отдых.</div></details>
+        <details class="faq"><summary data-i18n="faq.q2">Есть ли противопоказания?</summary><div data-i18n="faq.a2">Острые воспалительные процессы, высокая температура, кожные заболевания в месте воздействия и др. Перед началом мы обсудим ваше состояние.</div></details>
+        <details class="faq"><summary data-i18n="faq.q3">Как часто делать массаж?</summary><div data-i18n="faq.a3">Профилактически — 1–2 раза в месяц. Для решения задач может потребоваться курс 5–10 процедур 1–2 раза в неделю.</div></details>
+      </div>
+    </section>
+
+    <!-- КОНТАКТЫ / ЗАПИСЬ -->
+    <section id="contact" class="leaf wave">
+      <div class="container">
+        <h2 data-i18n="contact.title">Контакты и предварительная запись</h2>
+        <p style="text-align:center; max-width:760px; margin:0 auto 28px; color:var(--muted);" data-i18n="contact.note">Заполните форму, и я свяжусь с вами для подтверждения. <strong>Демо:</strong> форма не отправляет данные на сервер.</p>
+        <form class="form" onsubmit="event.preventDefault(); alert(window.t('contact.thanks'));" aria-label="Форма записи">
+          <div class="field"><label for="name" data-i18n="form.name">Имя</label><input class="input" id="name" name="name" placeholder="Ваше имя" required /></div>
+          <div class="field"><label for="phone" data-i18n="form.phone">Телефон</label><input class="input" id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required /></div>
+          <div class="field"><label for="service" data-i18n="form.service">Услуга</label>
+            <select class="select" id="service" name="service" required>
+              <option value="" disabled selected data-i18n="form.choose">Выберите услугу</option>
+              <option data-i18n="services.s1.title">Классический массаж</option>
+              <option data-i18n="services.s2.title">Аромарелакс</option>
+              <option data-i18n="services.s3.title">Спортивный массаж</option>
+            </select>
+          </div>
+          <div class="field"><label for="date" data-i18n="form.date">Дата</label><input class="input" id="date" name="date" type="date" required /></div>
+          <div class="field"><label for="time" data-i18n="form.time">Время</label><input class="input" id="time" name="time" type="time" min="09:00" max="21:00" step="900" required /></div>
+          <div class="field"><label for="message" data-i18n="form.msg">Комментарий (по желанию)</label><textarea class="textarea" id="message" name="message" placeholder="Предпочтения, самочувствие, пожелания"></textarea></div>
+          <button class="submit" type="submit"><i class="fa-solid fa-paper-plane"></i> <span data-i18n="form.submit">Отправить заявку</span></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ПОДВАЛ -->
+  <footer>
+    <div class="container">
+      <div class="social" aria-label="Социальные сети">
+        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p style="margin-top:10px;" data-i18n="footer.copy">© 2025, Имя Фамилия. Профессиональный оздоровительный массаж.</p>
+      <p data-i18n="footer.contacts">Тел.: +7 (000) 000‑00‑00 · Email: info@vashsite.com</p>
+      <p style="font-size:.9rem; opacity:.8; max-width:820px; margin:10px auto 0;" data-i18n="footer.note">Важно: услуги не являются медицинскими; при хронических и острых состояниях рекомендуема консультация врача.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Минимальная дата для календаря — сегодня
+    (function(){
+      const d = document.getElementById('date');
+      if (d) {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth()+1).padStart(2,'0');
+        const dd = String(today.getDate()).padStart(2,'0');
+        d.min = `${yyyy}-${mm}-${dd}`;
+      }
+    })();
+
+    // ----- I18N (RU/EN) -----
+    const dict = {
+      ru: {
+        brand: 'Имя Фамилия',
+        'menu.about':'Обо мне','menu.services':'Услуги','menu.gallery':'Атмосфера','menu.faq':'Вопросы','menu.contact':'Запись',
+        'hero.title':'Гармония тела и души через прикосновение',
+        'hero.subtitle':'Холистический подход к вашему самочувствию: снимаем напряжение, улучшаем сон и возвращаем лёгкость в теле. Тёплое пространство, натуральные масла и бережные техники.',
+        'hero.cta':'Записаться',
+        'about.title':'Философия заботы о вас','about.p1':'Наше тело — единая система, где физическое и эмоциональное неразделимы. Я соединяю классические и мягкие релиз‑техники, чтобы помочь вам восстановиться и почувствовать себя лучше уже после первой встречи.','about.p2':'Безопасное пространство, конфиденциальность и внимательное отношение — основы моей практики.',
+        'services.title':'Услуги и техники',
+        'services.s1.title':'Классический массаж','services.s1.desc':'Снятие мышечного напряжения, улучшение кровообращения и общее восстановление.','services.s1.price':'60 мин · 3000 ₽',
+        'services.s2.title':'Аромарелакс','services.s2.desc':'Глубокое расслабление с натуральными эфирными маслами для снижения стресса.','services.s2.price':'75 мин · 4000 ₽',
+        'services.s3.title':'Спортивный массаж','services.s3.desc':'Восстановление после нагрузок, профилактика травм и повышение эластичности.','services.s3.price':'60 мин · 3500 ₽',
+        'gallery.title':'Атмосфера и пространство',
+        'faq.title':'Часто задаваемые вопросы','faq.q1':'Как подготовиться к первому сеансу?','faq.a1':'Рекомендуется принять душ и не есть за 1–1.5 часа до процедуры. Главное — прийти с настроем на отдых.','faq.q2':'Есть ли противопоказания?','faq.a2':'Острые воспалительные процессы, высокая температура, кожные заболевания в месте воздействия и др. Перед началом мы обсудим ваше состояние.','faq.q3':'Как часто делать массаж?','faq.a3':'Профилактически — 1–2 раза в месяц. Для решения задач может потребоваться курс 5–10 процедур 1–2 раза в неделю.',
+        'contact.title':'Контакты и предварительная запись','contact.note':'Заполните форму, и я свяжусь с вами для подтверждения. <strong>Демо:</strong> форма не отправляет данные на сервер.','contact.thanks':'Спасибо! Ваша заявка принята.',
+        'form.name':'Имя','form.phone':'Телефон','form.service':'Услуга','form.choose':'Выберите услугу','form.date':'Дата','form.time':'Время','form.msg':'Комментарий (по желанию)','form.submit':'Отправить заявку',
+        'footer.copy':'© 2025, Имя Фамилия. Профессиональный оздоровительный массаж.','footer.contacts':'Тел.: +7 (000) 000‑00‑00 · Email: info@vashsite.com','footer.note':'Важно: услуги не являются медицинскими; при хронических и острых состояниях рекомендуема консультация врача.'
+      },
+      en: {
+        brand: 'Name Surname',
+        'menu.about':'About','menu.services':'Services','menu.gallery':'Atmosphere','menu.faq':'FAQ','menu.contact':'Booking',
+        'hero.title':'Harmony of body and mind through touch',
+        'hero.subtitle':'A holistic approach to your well‑being: release tension, sleep better, and feel lighter. Warm space, natural oils, and gentle techniques.',
+        'hero.cta':'Book now',
+        'about.title':'Care philosophy','about.p1':'Your body is an integrated system—physical and emotional are intertwined. I combine classic and gentle release techniques to help you recover and feel better after the first session.','about.p2':'A safe space, confidentiality, and attentive care are the foundation of my practice.',
+        'services.title':'Services & techniques',
+        'services.s1.title':'Classic massage','services.s1.desc':'Relieves muscle tension, improves circulation, and supports recovery.','services.s1.price':'60 min · 3000 ₽',
+        'services.s2.title':'Aroma relax','services.s2.desc':'Deep relaxation with natural essential oils to reduce stress.','services.s2.price':'75 min · 4000 ₽',
+        'services.s3.title':'Sports massage','services.s3.desc':'Post‑workout recovery, injury prevention, and flexibility.','services.s3.price':'60 min · 3500 ₽',
+        'gallery.title':'Atmosphere & space',
+        'faq.title':'Frequently asked questions','faq.q1':'How to prepare for the first session?','faq.a1':'Take a shower and avoid heavy meals 1–1.5 hours before. Most important—come ready to relax.','faq.q2':'Any contraindications?','faq.a2':'Acute inflammation, high fever, skin issues at the treatment area, etc. We will discuss your condition before we start.','faq.q3':'How often should I get a massage?','faq.a3':'For maintenance—1–2 times a month. For specific goals a 5–10 session course 1–2 times a week may be required.',
+        'contact.title':'Contacts & pre‑booking','contact.note':'Fill in the form and I will get back to you to confirm. <strong>Demo:</strong> the form does not send data to a server.','contact.thanks':'Thanks! Your request has been received.',
+        'form.name':'Name','form.phone':'Phone','form.service':'Service','form.choose':'Choose a service','form.date':'Date','form.time':'Time','form.msg':'Comment (optional)','form.submit':'Send request',
+        'footer.copy':'© 2025, Name Surname. Professional wellness massage.','footer.contacts':'Tel.: +7 (000) 000‑00‑00 · Email: info@yourwebsite.com','footer.note':'Disclaimer: services are non‑medical; consult a physician for acute or chronic conditions.'
+      }
+    };
+
+    function applyLang(lang){
+      const nodes = document.querySelectorAll('[data-i18n]');
+      nodes.forEach(node=>{
+        const key = node.getAttribute('data-i18n');
+        const tr = dict[lang][key];
+        if (tr !== undefined) node.innerHTML = tr;
+      });
+      document.documentElement.lang = lang;
+      document.getElementById('ruBtn').classList.toggle('active', lang==='ru');
+      document.getElementById('enBtn').classList.toggle('active', lang==='en');
+    }
+    window.t = (k)=>{ const lang=document.documentElement.lang||'ru'; return dict[lang][k]||k; };
+
+    document.getElementById('ruBtn').addEventListener('click',()=>applyLang('ru'));
+    document.getElementById('enBtn').addEventListener('click',()=>applyLang('en'));
+    // set initial
+    applyLang('ru');
+  </script>
+</body>
+</html>
